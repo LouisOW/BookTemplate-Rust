@@ -1,0 +1,96 @@
+# TEMPLATE: one example of every question type supported by mdbook-quiz.
+# Every question needs a unique, permanent id (generate with `uuidgen`).
+
+# --- Multiple choice, one correct answer ---------------------------------
+[[questions]]
+id = "03bd3f5a-26c9-47fc-bc27-0449285c66e2"
+type = "MultipleChoice"
+prompt.prompt = """
+Placeholder question text. Supports **Markdown** and `code`.
+"""
+answer.answer = "Correct answer"
+prompt.distractors = ["Distractor 1", "Distractor 2", "Distractor 3"]
+context = """
+Explanation shown after answering.
+"""
+
+# --- Multiple choice, several correct answers (checkboxes) ---------------
+[[questions]]
+id = "cf0f7318-e8b1-42af-97b5-995b26401f83"
+type = "MultipleChoice"
+prompt.prompt = """
+Select all that apply.
+"""
+answer.answer = ["Correct A", "Correct B"]
+prompt.distractors = ["Distractor 1", "Distractor 2"]
+prompt.sortAnswers = true
+context = """
+Explanation shown after answering.
+"""
+
+# --- Short answer (free text, exact match) -------------------------------
+[[questions]]
+id = "173fd2b1-da2b-419a-b501-ca0cfbc0605c"
+type = "ShortAnswer"
+prompt.prompt = """
+Placeholder question. Write your answer as a single word.
+"""
+answer.answer = "placeholder"
+# answer.alternatives = ["other-accepted-spelling"]
+context = """
+Explanation shown after answering.
+"""
+
+# --- Tracing (Rust: does it compile? if so, what's the output?) ----------
+[[questions]]
+id = "aefbd8a9-53bf-4574-85f2-f71319088797"
+type = "Tracing"
+prompt.program = """
+fn main() {
+    println!("placeholder");
+}
+"""
+answer.doesCompile = true
+answer.stdout = "placeholder"
+context = """
+Explanation shown after answering.
+"""
+
+[[questions]]
+id = "f871ca9a-e2dd-407e-a32d-5bdf1c65b130"
+type = "Tracing"
+prompt.program = """
+fn main() {
+    let x = 1;
+    x = 2;
+}
+"""
+answer.doesCompile = false
+answer.lineNumber = 3
+context = """
+Explanation shown after answering.
+"""
+
+# --- Multipart: several questions share one shared context block ---------
+[multipart]
+scenario = """
+**Context:** Shared scenario text shown above each question in this group.
+"""
+
+[[questions]]
+id = "4ddf74e4-9f07-4ac3-bb1e-34ba781bc8a0"
+multipart = "scenario"
+type = "MultipleChoice"
+prompt.prompt = "First question about the scenario."
+answer.answer = "Correct answer"
+prompt.distractors = ["Distractor"]
+context = "Explanation."
+
+[[questions]]
+id = "92f46ee9-8292-433b-bf12-841b88337265"
+multipart = "scenario"
+type = "MultipleChoice"
+prompt.prompt = "Second question about the scenario."
+answer.answer = "Correct answer"
+prompt.distractors = ["Distractor"]
+context = "Explanation."

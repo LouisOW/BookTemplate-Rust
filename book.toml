@@ -1,0 +1,54 @@
+[book]
+title = "Your Book Title"
+authors = ["Your Name"]
+language = "en"
+
+[output.html]
+additional-css = [
+  "ferris.css",                                    # code-block badges
+  "theme/semantic-notes.css",                      # > Note: callouts
+  "theme/listing.css",                             # <Listing> captions
+  "js-extensions/packages/feedback/dist/index.css", # highlight + comment
+]
+additional-js = [
+  "ferris.js",
+  "js-extensions/packages/feedback/dist/index.js",
+]
+
+# git-repository-url = "https://github.com/you/your-book"
+
+[output.html.search]
+use-boolean-and = true
+
+# Old URL -> new URL, for when you rename/renumber chapters.
+[output.html.redirect]
+# "old-chapter.html" = "new-chapter.html"
+
+# Interactive quizzes. See GUIDE.md §5.
+# `optional = true` lets the book build (without quizzes) if mdbook-quiz is not installed.
+[preprocessor.quiz]
+optional = true
+fullscreen = true
+validate = true
+cache-answers = true
+more-words = "words.dic"
+
+# Interactive Rust memory / permission diagrams. Rust-only. See GUIDE.md §6.
+# Delete this section if your book is not about Rust.
+[preprocessor.aquascope]
+optional = true
+
+# Semantic notes (`> Note: ...` -> <section class="note">). See GUIDE.md §7.
+[preprocessor.trpl-note]
+command = "cargo run --quiet --manifest-path packages/mdbook-trpl/Cargo.toml --bin mdbook-trpl-note"
+
+# Numbered, captioned code listings (<Listing ...>). See GUIDE.md §8.
+[preprocessor.trpl-listing]
+command = "cargo run --quiet --manifest-path packages/mdbook-trpl/Cargo.toml --bin mdbook-trpl-listing"
+output-mode = "default"
+
+[rust]
+edition = "2024"
+
+[build]
+extra-watch-dirs = ["quizzes", "packages/mdbook-trpl"]

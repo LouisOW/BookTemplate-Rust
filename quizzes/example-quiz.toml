@@ -1,0 +1,9 @@
+[[questions]]
+id = "48807bd7-1860-42a0-ad9a-258c71008a2c"
+type = "MultipleChoice"
+prompt.prompt = "Placeholder question? (Try clicking a wrong answer.)"
+answer.answer = "Correct answer"
+prompt.distractors = ["Wrong answer A", "Wrong answer B", "Wrong answer C"]
+context = """
+Explanation shown after the reader answers.
+"""
